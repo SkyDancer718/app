@@ -7,9 +7,8 @@
 # no regular words or you'll be exposed to dictionary attacks.
 # You can use `rake secret` to generate a secure secret key.
 
-# Make sure the secrets in this file are kept private
+# Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-
 require 'securerandom'
 
 def secure_token
@@ -25,4 +24,5 @@ def secure_token
   end
 end
 
-SampleApp::Application.config.secret_key_base = secure_token
+App::Application.config.secret_key_base = secure_token
+
