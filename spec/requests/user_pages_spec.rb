@@ -1,12 +1,32 @@
 require 'spec_helper'
 
-describe "User pages" do
-  subject { page }
+describe User do
 
-  describe "signup page" do
-    before { visit signup_path }
+  before do
+    @user = User.new(name: "Example User", email: "user@example.com",
+                     password: "foobar", password_confirmation: "foobar")
+  end
 
-    it { should have_content('Sign up') }
-    it { should have_title('Sign up')}
+  subject { @user }
+
+  it { should respond_to(:name) }
+  it { should respond_to(:email) }
+  it { should respond_to(:password_digest) }
+  it { should respond_to(:password) }
+  it { should respond_to(:password_confirmation) }
+
+  it { should be_valid }
+
+  describe "when password is not present" do
+    before do
+      @user = User.new(name: "Example User", email: "user@example.com",
+                       password: " ", password_confirmation: " ")
+    end
+    it { should_not be_valid }
+  end
+
+  describe "when password doesn't match confirmation" do
+    before { @user.password_confirmation = "mismatch" }
+    it { should_not be_valid }
   end
 end
