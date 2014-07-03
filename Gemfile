@@ -49,6 +49,8 @@ group :development, :test do
   gem 'spork-rails'
   gem 'guard-spork'
   gem 'childprocess'
+  #набор юзеров
+  gem 'factory_girl_rails', '4.2.1'
 end
 
 group :test do
