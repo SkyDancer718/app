@@ -1,4 +1,6 @@
 class Post < ActiveRecord::Base
 	belongs_to :user
-	validates :content, length {mxaimum: 140}
+	default_scope -> { order('created_at DESC') }
+	#validates :content, length {mxaimum: 140}
+    validates :user_id, presence: true
 end
